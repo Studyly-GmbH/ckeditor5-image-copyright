@@ -1,8 +1,8 @@
 {
-  "name": "image-max-width",
+  "name": "image-copyright",
   "version": "1.0.6",
-  "description": "Image Max Width Setter for CKEditor5",
-  "main": "src/imagemaxwidth.js",
+  "description": "Image Copyright Setter for CKEditor5",
+  "main": "src/imagecopyright.js.js",
   "keywords": [
     "ckeditor5",
     "image",
