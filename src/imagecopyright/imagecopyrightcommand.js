@@ -34,9 +34,6 @@ export default class ImageCopyrightCommand extends Command {
 
     getCopyrightNotice(element) {
         let copyright = null;
-        console.log('getCopyrightNotice')
-        console.log(element);
-        console.log(element ? element.hasAttribute( 'copyright-notice') : 'element is null');
         if ( element && element.hasAttribute( 'copyright-notice' ) ) {
             copyright = element.getAttribute( 'copyright-notice' );
         }
@@ -53,8 +50,6 @@ export default class ImageCopyrightCommand extends Command {
         const imageElement = model.document.selection.getSelectedElement();
 
         model.change( writer => {
-            console.log('exeCute');
-            console.log(options['copyright-notice']);
             if (options['copyright-notice']) {
                 writer.setAttribute(
                     'copyright-notice',

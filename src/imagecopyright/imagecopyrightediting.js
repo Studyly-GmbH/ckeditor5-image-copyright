@@ -43,7 +43,6 @@ export default class ImageCopyrightEditing extends Plugin {
     _registerConverters( editor , imageType ) {
         editor.conversion.for( 'downcast' ).add( dispatcher =>
             dispatcher.on( `attribute:copyright-notice:${ imageType }`, ( evt, data, conversionApi ) => {
-                console.log('downcast');
                 if ( !conversionApi.consumable.consume( data.item, evt.name ) ) {
                     return;
                 }
@@ -71,9 +70,6 @@ export default class ImageCopyrightEditing extends Plugin {
             model: {
                 key: 'copyright-notice',
                 value: viewElement => {
-                    console.log('upcast model');
-                    console.log(viewElement);
-                    console.log(viewElement.getAttribute('copyright-notice'));
                     return viewElement.getAttribute('copyright-notice');
                 }
             },
