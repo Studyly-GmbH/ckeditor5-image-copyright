@@ -48,6 +48,8 @@ export default class ImageCopyrightUi extends Plugin {
             })
 
             input.bind( 'value' ).to( command, (value) => {
+                console.log(' input.bind( \'value\' ).to( command, (value) => {');
+                console.log(value ? value['copyright-notice']: 'null');
                 return value ? value['copyright-notice'] : null;
             } );
 
@@ -55,12 +57,15 @@ export default class ImageCopyrightUi extends Plugin {
                 console.log(input);
                 this._validateInput(input);
                 if (input.hasError) {
+                    console.log('input.hasError');
                     return input;
                 } else if (input.isEmpty) {
+                    console.log('input.isEmpty');
                     editor.execute( 'imageCopyright', {
                         'copyright-notice': null
                     });
                 } else {
+                    console.log('input notEmpty')
                     editor.execute('imageCopyright', {
                         'copyright-notice': input.element.value
                     });
@@ -74,7 +79,7 @@ export default class ImageCopyrightUi extends Plugin {
     _validateInput(view) {
         view.set('errorText', null);
         view.set('hasError', false);
-        view.set('isEmpty', true);
+        view.set('isEmpty', false);
 
         /*if (isNaN(view.element.value)) {
             view.set('errorText', 'Input must be numeric');

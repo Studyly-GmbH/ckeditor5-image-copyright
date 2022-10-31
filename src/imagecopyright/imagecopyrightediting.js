@@ -32,9 +32,9 @@ export default class ImageCopyrightEditing extends Plugin {
             ]
         } );
         schema.extend( 'imageBlock', {
-          allowAttributes: [
-            'copyright-notice'
-          ]
+            allowAttributes: [
+                'copyright-notice'
+            ]
         } );
         this._registerConverters( editor, 'imageBlock' );
         this._registerConverters( editor, 'imageInline' );
@@ -43,7 +43,7 @@ export default class ImageCopyrightEditing extends Plugin {
     _registerConverters( editor , imageType ) {
         editor.conversion.for( 'downcast' ).add( dispatcher =>
             dispatcher.on( `attribute:copyright-notice:${ imageType }`, ( evt, data, conversionApi ) => {
-
+                console.log('downcast');
                 if ( !conversionApi.consumable.consume( data.item, evt.name ) ) {
                     return;
                 }
@@ -51,13 +51,13 @@ export default class ImageCopyrightEditing extends Plugin {
                 const viewWriter = conversionApi.writer;
                 const figure = conversionApi.mapper.toViewElement( data.item );
 
-                // if ( data.attributeNewValue !== null ) {
-                //     viewWriter.setStyle( 'max-width', data.attributeNewValue + 'px', figure );
-                //     viewWriter.addClass( 'image_resized', figure );
-                // } else {
-                //     viewWriter.removeStyle( 'max-width', figure );
-                //     viewWriter.removeClass( 'image_resized', figure );
-                // }
+                if ( data.attributeNewValue !== null ) {
+                    viewWriter.setAttribute( 'copyright-notice', data.attributeNewValue, figure );
+                    viewWriter.addClass( 'image_copyright', figure );
+                } else {
+                    viewWriter.removeAttribute( 'copyright-notice', figure );
+                    viewWriter.removeClass( 'image_copyright', figure );
+                }
             } ));
 
         // upcast
@@ -66,14 +66,15 @@ export default class ImageCopyrightEditing extends Plugin {
         editor.conversion.for( 'upcast' ).attributeToAttribute( {
             view: {
                 name: imageType === 'imageBlock' ? 'figure' : 'img',
-                styles: {
-                    'copyright-notice': /.+/
-                }
+                key: 'copyright-notice'
             },
             model: {
                 key: 'copyright-notice',
                 value: viewElement => {
-                    return viewElement.getStyle('copyright-notice').match(/\d+/g);
+                    console.log('upcast model');
+                    console.log(viewElement);
+                    console.log(viewElement.getAttribute('copyright-notice'));
+                    return viewElement.getAttribute('copyright-notice');
                 }
             },
             converterPriority: 'low'
