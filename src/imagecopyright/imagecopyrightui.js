@@ -34,9 +34,10 @@ export default class ImageCopyrightUi extends Plugin {
         editor.ui.componentFactory.add( componentName, locale => {
             const command = editor.commands.get( 'imageCopyright' );
             const input = new InputTextView( locale );
+            const t = locale.t;
 
             input.set( {
-                placeholder: 'copyright',
+                placeholder: t('copyright'),
             } );
 
             input.extendTemplate({

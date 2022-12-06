@@ -1,0 +1,3 @@
+msgctxt "copyright"
+msgid "copyright"
+msgstr "Copyright"
