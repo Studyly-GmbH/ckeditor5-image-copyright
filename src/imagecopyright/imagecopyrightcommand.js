@@ -2,7 +2,7 @@ import Command from '@ckeditor/ckeditor5-core/src/command';
 /**
  * The image resize command. Currently, it supports both the width and the height attributes.
  */
-export default class ImageMaxWidthCommand extends Command {
+export default class ImageCopyrightCommand extends Command {
 
     constructor( editor ) {
         super( editor );
@@ -21,23 +21,23 @@ export default class ImageMaxWidthCommand extends Command {
         const element = this.editor.model.document.selection.getSelectedElement();
         this.isEnabled = imageUtils.isImage( element );
 
-        let width = this.getMaxWidth( element );
+        let copyrightNotice = this.getCopyrightNotice( element );
 
-        if (width) {
+        if (copyrightNotice) {
             this.value = {
-                'max-width': width
+                'copyright-notice': copyrightNotice
             };
         } else {
             this.value = null;
         }
     }
 
-    getMaxWidth(element) {
-        let width = null;
-        if ( element && element.hasAttribute( 'max-width' ) ) {
-            width = element.getAttribute( 'max-width' );
+    getCopyrightNotice(element) {
+        let copyright = null;
+        if ( element && element.hasAttribute( 'copyright-notice' ) ) {
+            copyright = element.getAttribute( 'copyright-notice' );
         }
-        return Number(width);
+        return copyright;
     }
 
     /**
@@ -50,14 +50,14 @@ export default class ImageMaxWidthCommand extends Command {
         const imageElement = model.document.selection.getSelectedElement();
 
         model.change( writer => {
-            if (options['max-width']) {
+            if (options['copyright-notice']) {
                 writer.setAttribute(
-                    'max-width',
-                    options['max-width'],
+                    'copyright-notice',
+                    options['copyright-notice'],
                     imageElement
                 )
             } else {
-                writer.removeAttribute('max-width', imageElement);
+                writer.removeAttribute('copyright-notice', imageElement);
             }
         });
 
