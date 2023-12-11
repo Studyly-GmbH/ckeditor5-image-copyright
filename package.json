@@ -2,7 +2,7 @@
   "name": "image-copyright",
   "version": "1.0.6",
   "description": "Image Copyright Setter for CKEditor5",
-  "main": "src/imagecopyright.js.js",
+  "main": "src/imagecopyright.js",
   "keywords": [
     "ckeditor5",
     "image",
@@ -13,10 +13,10 @@
     "plugin"
   ],
   "dependencies": {
-    "@ckeditor/ckeditor5-core": "^35.0.1",
-    "@ckeditor/ckeditor5-image": "^35.0.1",
-    "@ckeditor/ckeditor5-ui": "^35.0.1",
-    "@ckeditor/ckeditor5-utils": "^35.0.1"
+    "@ckeditor/ckeditor5-core": "^37.1.0",
+    "@ckeditor/ckeditor5-image": "^37.1.0",
+    "@ckeditor/ckeditor5-ui": "^37.1.0",
+    "@ckeditor/ckeditor5-utils": "^37.1.0"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,6 @@
     "url": "https://github.com/eMAGTechLabs/ckeditor5-classic-image-resize/issues"
   },
   "author": "th3mast3rofshadows",
-  "license": "GPL"
+  "license": "GPL",
+  "types": "src/imagecopyright.d.ts"
 }
