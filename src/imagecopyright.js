@@ -1,4 +1,4 @@
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { Plugin } from 'ckeditor5';
 import ImageCopyrightEditing from "./imagecopyright/imagecopyrightediting";
 import ImageCopyrightUi from "./imagecopyright/imagecopyrightui";
 
